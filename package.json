@@ -27,7 +27,6 @@
     "koa-serve-static": "0.0.1",
     "koa-static": "1.4.9",
     "koa-views": "3.1.0",
-    "co-views": "0.1.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {
