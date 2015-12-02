@@ -125,6 +125,7 @@ function callback() {
                 broker.brokerNodeManager.command({
                     NodeId: app.nodeManager.getNode(),
                     CreateTime: (new Date()).getTime(),
+                    Command: 'start',
                     AgentId: data.AgentId,
                     Intention: 'login',
                     Mode: 'trusted'
