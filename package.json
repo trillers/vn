@@ -12,7 +12,6 @@
     "base-settings":  "git+https://henryleu:c148960791ab761064ecfbb07b7fdf582ff008df@github.com/trillers/base-settings.git",
     "vc":             "git+https://henryleu:c148960791ab761064ecfbb07b7fdf582ff008df@github.com/trillers/vc.git",
     "bluebird": "2.9.34",
-    "co": "4.6.0",
     "amqplib": "0.4.0",
     "log4js": "0.6.26",
     "mongoose": "4.2.6",
@@ -27,7 +26,8 @@
     "koa-serve-static": "0.0.1",
     "koa-static": "1.4.9",
     "koa-views": "3.1.0",
-    "underscore": "1.8.3"
+    "underscore": "1.8.3",
+    "node-uuid": "1.4.7"
   },
   "devDependencies": {
     "mocha": "2.1.0",

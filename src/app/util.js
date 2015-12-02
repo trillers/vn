@@ -1,4 +1,3 @@
-var settings = require('athena-settings');
 var util = {};
 util.extend = function(obj, source) {
     for (var prop in source) {
@@ -53,7 +52,7 @@ util.genOneToOneId = function(str1, str2) {
  * @param str
  * **/
 util.generateToken = function(str){
-    var key = settings.secretKey;
+    var key = 'test';
     return require('crypto').createHash('sha1').update(String(str)).update(key).digest('hex');
 }
 
@@ -71,6 +70,12 @@ function _sortStr(str1, str2) {
     }
 }
 
+util.mixin = function(target, source){
+    for(var prop in source){
+        target[prop] = source[prop]
+    }
+}
+
 module.exports = {
     extend: util.extend,
     extendAll: util.extendAll,
@@ -79,5 +84,6 @@ module.exports = {
     result: util.result,
     appendLine: util.appendLine,
     genOneToOneId: util.genOneToOneId,
-    generateToken: util.generateToken
+    generateToken: util.generateToken,
+    mixin: mixin
 };
