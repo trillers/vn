@@ -2,4 +2,4 @@
 //var context = require('./context');
 //require('./modules');
 //module.exports = context;
-require('../src/app/application');
+require('../src/app');
