@@ -85,5 +85,5 @@ module.exports = {
     appendLine: util.appendLine,
     genOneToOneId: util.genOneToOneId,
     generateToken: util.generateToken,
-    mixin: mixin
+    mixin: util.mixin
 };

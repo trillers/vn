@@ -1,6 +1,6 @@
 var session = require('koa-generic-session');
 var redisStore = require('koa-redis');
-var settings = require('athena-settings').redis;
+var settings = require('base-settings').redis;
 
 module.exports = function(){
     return session({

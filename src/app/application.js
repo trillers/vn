@@ -4,7 +4,7 @@ var views = require('koa-views');
 var logging = require('./logging');
 var logger = require('./logging').logger;
 var path = require('path');
-var settings = require('athena-settings');
+var settings = require('base-settings');
 var koaBody = require('koa-body');
 app.env = 'development' || settings.env.NODE_ENV;
 //app.enable('trust proxy'); //TODO: configure it by settings

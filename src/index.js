@@ -1,4 +1,5 @@
-var common = require('./common');
-var context = require('./context');
-require('./modules');
-module.exports = context;
+//var common = require('./common');
+//var context = require('./context');
+//require('./modules');
+//module.exports = context;
+require('../src/app/application');

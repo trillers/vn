@@ -27,7 +27,8 @@
     "koa-static": "1.4.9",
     "koa-views": "3.1.0",
     "underscore": "1.8.3",
-    "node-uuid": "1.4.7"
+    "node-uuid": "1.4.7",
+    "thunkify": "*"
   },
   "devDependencies": {
     "mocha": "2.1.0",
