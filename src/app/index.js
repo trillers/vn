@@ -35,10 +35,15 @@ function* callback() {
     var broker = factory.brokerNodeManager;
     broker.onCommand(function(err, data) {
         co(function* (err, data){
-            console.log(data);
-            var node = yield app.nodeManager.getNode();
-            if (node) {
-                broker.command(data, node.NodeId);
+            try{
+                console.log(data);
+                var node = yield app.nodeManager.getNode();
+                console.log(node);
+                if (node) {
+                    broker.command(data, node);
+                }
+            }catch(e){
+                console.error(e)
             }
         }(err, data))
     });

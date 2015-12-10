@@ -68,7 +68,7 @@ var kvs ={
                 err,
                 'Fail to load all nodes' + ': ' + err,
                 'Succeed to load all nodes');
-            cbUtil.handleSingleValue(callback, err, JSON.parse(result));
+            cbUtil.handleSingleValue(callback, err, result);
         })
     },
     getAllAgents: function(callback){
@@ -78,7 +78,7 @@ var kvs ={
                 err,
                 'Fail to load all agents' + ': ' + err,
                 'Succeed to load all agents');
-            cbUtil.handleSingleValue(callback, err, JSON.parse(result));
+            cbUtil.handleSingleValue(callback, err, result);
         })
 
     },

@@ -47,7 +47,7 @@ proto.saveOrUpdateNode = function* (node){
             }
         }else{
             yield kvs.pushNodeToSetAsync(nodeJson);
-            nodeJson = new Node(node.NodeId);
+            util.mixin(nodeJson, new Node(node.NodeId));
         }
         yield kvs.saveNodeAsync(nodeJson);
     }catch(e){
@@ -67,7 +67,7 @@ proto.saveOrUpdateAgent = function* (agent){
             }
         }else{
             yield kvs.pushAgentToSetAsync(json);
-            json = new Agent(json.AgentId);
+            util.mixin(json, new Node(json.AgentId));
         }
         yield kvs.saveAgentAsync(json);
     }catch(e){
@@ -76,7 +76,7 @@ proto.saveOrUpdateAgent = function* (agent){
 };
 
 proto.getNode = function* (){
-    var nodeMaps = yield this.getAllNodesAsync();
+    var nodeMaps = yield kvs.getAllNodesAsync();
     if(!nodeMaps || !(nodeMaps.length)){
         return null;
     }
