@@ -53,6 +53,8 @@ function* callback() {
      *      NodeId: String
      *      OldStatus: String  reference: 'started' | 'stopped' | 'interrupted'
      *      NewStatus: String
+     *      ExceptedAgentSum: 预计
+     *      ActualAgentSum: 实际
      *  }
      */
     broker.onAgentManagerStatusChange(function (err, data) {
