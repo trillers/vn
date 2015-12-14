@@ -59,7 +59,7 @@ function* callback() {
      */
     broker.onAgentManagerStatusChange(function (err, data) {
         co(function* (err, data){
-            console.log("[system]: agent status manager changed [agentId]: data.NodeId " + data.NodeId);
+            console.log("[system]: agent manager status changed [agentId]: data.NodeId " + data.NodeId);
             console.log(data);
             if(data.NewStatus === 'started'){
                 broker.infoRequest({CreateTime: (new Date()).getTime()}, data.NodeId);
@@ -81,7 +81,7 @@ function* callback() {
      */
     broker.onInfoResponse(function(err, data){
         co(function* (err, data){
-            console.log("[system]: agent status manager changed [agentId]: data.NodeId " + data.NodeId);
+            console.log("[system]: agent info response [agentId]: data.NodeId " + data.NodeId);
             console.log(data);
             yield app.nodeManager.updateAgent(data);
         }(err, data))
@@ -107,6 +107,14 @@ function* callback() {
             console.log("[system]: agent status changed [agentId]: data.AgentId" + data.AgentId);
             console.log(data);
             yield app.nodeManager.saveOrUpdateAgent(data);
-        })
+        }(err, data))
     });
+
+    //broker.onAgentManagerHeartbeat(function(err, data){
+    //    console.log(data)
+    //});
+    //
+    //broker.onAgentHeartbeat(function(err, data){
+    //    console.log(data)
+    //})
 }
