@@ -34,7 +34,7 @@ function* callback() {
     var factory = yield getBroker;
     var broker = factory.brokerNodeManager;
     broker.onCommand(function(err, data) {
-        co(function* (err, data){
+        co(function* (){
             try{
                 //agent exist
                 //check command
@@ -65,7 +65,7 @@ function* callback() {
             }catch(e){
                 console.error(e)
             }
-        }(err, data))
+        })
     });
     /**
      *  msg: {
@@ -78,14 +78,14 @@ function* callback() {
      *  }
      */
     broker.onAgentManagerStatusChange(function (err, data) {
-        co(function* (err, data){
+        co(function* (){
             console.log("[system]: agent manager status changed [agentId]: data.NodeId " + data.NodeId);
             console.log(data);
             if(data.NewStatus === 'started'){
                 broker.infoRequest({CreateTime: (new Date()).getTime()}, data.NodeId);
             }
             yield app.nodeManager.saveOrUpdateNode(data);
-        }(err, data))
+        })
     });
     /**
      * Message routing: am ---> node
@@ -100,11 +100,11 @@ function* callback() {
          *  }
      */
     broker.onInfoResponse(function(err, data){
-        co(function* (err, data){
+        co(function* (){
             console.log("[system]: agent info response [agentId]: data.NodeId " + data.NodeId);
             console.log(data);
             yield app.nodeManager.updateAgent(data);
-        }(err, data))
+        })
     });
     /**
      *  msg: {
@@ -123,14 +123,14 @@ function* callback() {
      *  }
      */
     broker.onAgentStatusChange(function (err, data) {
-        co(function* (err, data) {
+        co(function* () {
             console.log("[system]: agent status changed [agentId]: data.AgentId" + data.AgentId);
             console.log(data);
             yield app.nodeManager.saveOrUpdateAgent(data);
             if(['aborted, exited'].indexOf(data.NewStatus) >= 0){
                 yield app.nodeManager.removeAgentFromSet(data.AgentId);
             }
-        }(err, data))
+        })
     });
 
     //broker.onAgentManagerHeartbeat(function(err, data){
