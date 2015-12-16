@@ -127,6 +127,9 @@ function* callback() {
             console.log("[system]: agent status changed [agentId]: data.AgentId" + data.AgentId);
             console.log(data);
             yield app.nodeManager.saveOrUpdateAgent(data);
+            if(['aborted, exited'].indexOf(data.NewStatus) >= 0){
+                yield app.nodeManager.removeAgentFromSet(data.AgentId);
+            }
         }(err, data))
     });
 

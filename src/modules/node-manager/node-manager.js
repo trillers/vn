@@ -36,6 +36,10 @@ proto.updateAgent = function* (agent){
     yield kvs.saveNode(agent);
 };
 
+proto.removeAgentFromSet = function* (agentId){
+    yield kvs.delAgentById(agentId);
+};
+
 proto.saveOrUpdateNode = function* (node){
     try{
         var nodeJson = node;
