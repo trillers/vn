@@ -24,7 +24,8 @@ proto.getAllNodes = function* (){
 };
 
 proto.getAllAgents = function* (){
-    return yield kvs.getAllAgents();
+    var map = yield kvs.getAllAgents();
+    return Object.keys(map);
 };
 
 proto.updateNode = function* (node){

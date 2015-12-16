@@ -1,9 +1,9 @@
-var util = require('../src/modules/node-manager/util');
-var o = {
-    name: 'zh',
-    sex: '1'
+function test(foo){
+    if(foo.name) return;
+    if(foo.sex){
+        if(foo.st)
+        console.log('111')
+    }
+    console.log('ok')
 }
-var json =  util.clone(o);
-console.log(json)
-util.objPick(json, 'name');
-console.log(json)
+test({name:false, sex: true, st: false});

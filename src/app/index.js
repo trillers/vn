@@ -36,11 +36,31 @@ function* callback() {
     broker.onCommand(function(err, data) {
         co(function* (err, data){
             try{
-                console.log(data);
-                var node = yield app.nodeManager.getNode();
-                console.log(node);
-                if (node) {
-                    broker.command(data, node);
+                //agent exist
+                //check command
+                var agentIds = yield app.nodeManager.getAllAgents();
+                if(agentIds.indexOf(data.AgentId) >=0){
+                    var agent = yield app.nodeManager.getAgentById(data.AgentId);
+                    if(data.Command === 'start'){
+                        if(['aborted, exited'].indexOf(agent.NewStatus)<=-1) return;
+                    }
+                    else if(data.Command === 'stop'){
+                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1) return;
+                    }
+                    else if(data.Command === 'restart'){
+                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1) return;
+                    }
+                    broker.command(data, agent.NodeId);
+                }else{
+                    //agent not exist
+                    //allow start only
+                    if(data.Command === 'start'){
+                        var nodeId = yield app.nodeManager.getNode();
+                        if (nodeId) {
+                            broker.command(data, nodeId);
+                        }
+                    }
+                    //nothing to do
                 }
             }catch(e){
                 console.error(e)
