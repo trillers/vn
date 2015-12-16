@@ -11,13 +11,12 @@
   "dependencies": {
     "base-settings":  "git+https://henryleu:c148960791ab761064ecfbb07b7fdf582ff008df@github.com/trillers/base-settings.git",
     "vc":             "git+https://henryleu:c148960791ab761064ecfbb07b7fdf582ff008df@github.com/trillers/vc.git",
-    "co": "*",
+    "co": "4.6.0",
     "bluebird": "2.9.34",
     "amqplib": "0.4.0",
     "log4js": "0.6.26",
     "mongoose": "4.2.6",
     "redis": "0.12.1",
-    "redis-sentinel": "*",
     "koa": "0.2.0",
     "koa-body": "1.2.1",
     "koa-generic-session": "1.9.0",
@@ -29,8 +28,7 @@
     "koa-static": "1.4.9",
     "koa-views": "3.1.0",
     "underscore": "1.8.3",
-    "node-uuid": "1.4.7",
-    "thunkify": "2.1.2"
+    "node-uuid": "1.4.7"
   },
   "devDependencies": {
     "mocha": "2.1.0",

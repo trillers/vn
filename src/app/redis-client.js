@@ -1,7 +1,6 @@
 var settings = require('base-settings').redis;
 var logger = require('./logging').logger;
 var redis = require('redis');
-var sentinel = require('redis-sentinel');
 var DEFAULT_NAME = 'default';
 var clients = {};
 
@@ -35,7 +34,7 @@ var createRedisClient = function(name){
     if (settings.mode == 'single') {
         redisClient = redis.createClient(settings.port, settings.host, {} ); //TODO: need options
     } else {
-        redisClient = sentinel.createClient(settings.sentinel.hosts, settings.sentinel.masterName, {});
+        redisClient = null; //TODO: sentinel
     }
 
     if (settings.auth != '') {redisClient.auth(settings.auth);}
