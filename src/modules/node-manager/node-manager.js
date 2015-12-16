@@ -20,24 +20,24 @@ function NodeManager(){
 var proto = NodeManager.prototype;
 
 proto.getAllNodes = function* (){
-    return yield kvs.getAllNodes();
+    return yield kvs.getAllNodesAsync();
 };
 
 proto.getAllAgents = function* (){
-    var map = yield kvs.getAllAgents();
+    var map = yield kvs.getAllAgentsAsync();
     return Object.keys(map);
 };
 
 proto.updateNode = function* (node){
-    yield kvs.saveNode(node);
+    yield kvs.saveNodeAsync(node);
 };
 
 proto.updateAgent = function* (agent){
-    yield kvs.saveNode(agent);
+    yield kvs.saveNodeAsync(agent);
 };
 
 proto.removeAgentFromSet = function* (agentId){
-    yield kvs.delAgentById(agentId);
+    yield kvs.delAgentByIdAsync(agentId);
 };
 
 proto.saveOrUpdateNode = function* (node){
