@@ -42,14 +42,24 @@ function* callback() {
                 if(agentIds.indexOf(data.AgentId) >=0){
                     var agent = yield app.nodeManager.getAgentById(data.AgentId);
                     if(data.Command === 'start'){
-                        if(['aborted, exited'].indexOf(agent.NewStatus)<=-1) return;
+                        if(['aborted, exited'].indexOf(agent.NewStatus)<=-1){
+                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            return;
+                        }
                     }
                     else if(data.Command === 'stop'){
-                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1) return;
+                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1){
+                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            return;
+                        }
                     }
                     else if(data.Command === 'restart'){
-                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1) return;
+                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1){
+                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            return;
+                        }
                     }
+                    logger.info('[system]: Forward request to am, prepare to '+data.Command+' agent [agentId]='+data.AgentId);
                     broker.command(data, agent.NodeId);
                 }else{
                     //agent not exist
@@ -57,10 +67,13 @@ function* callback() {
                     if(data.Command === 'start'){
                         var nodeId = yield app.nodeManager.getNode();
                         if (nodeId) {
+                            logger.info('[system]: Forward request to am, prepare to '+data.Command+' agent [agentId]='+data.AgentId);
                             broker.command(data, nodeId);
+                            return;
                         }
                     }
                     //nothing to do
+                    logger.warn('[system]: Failed to ' +data.Command+ ' agent, no such agent [agentId]='+data.AgentId);
                 }
             }catch(e){
                 console.error(e)
@@ -133,11 +146,11 @@ function* callback() {
         })
     });
 
-    //broker.onAgentManagerHeartbeat(function(err, data){
-    //    console.log(data)
-    //});
-    //
-    //broker.onAgentHeartbeat(function(err, data){
-    //    console.log(data)
-    //})
+    broker.onAgentManagerHeartbeat(function(err, data){
+        //TODO
+    });
+
+    broker.onAgentHeartbeat(function(err, data){
+        //TODO
+    })
 }
