@@ -48,13 +48,13 @@ function* callback() {
                         }
                     }
                     else if(data.Command === 'stop'){
-                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1){
+                        if(['starting', 'logging', 'mislogged', 'logged', 'exceptional'].indexOf(agent.NewStatus)<=-1){
                             logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
                             return;
                         }
                     }
                     else if(data.Command === 'restart'){
-                        if(['starting, logging, mislogged, logged, exceptional'].indexOf(agent.NewStatus)<=-1){
+                        if(['starting', 'logging', 'mislogged', 'logged', 'exceptional'].indexOf(agent.NewStatus)<=-1){
                             logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
                             return;
                         }
