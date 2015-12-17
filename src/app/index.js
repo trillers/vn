@@ -42,7 +42,7 @@ function* callback() {
                 if(agentIds.indexOf(data.AgentId) >=0){
                     var agent = yield app.nodeManager.getAgentById(data.AgentId);
                     if(data.Command === 'start'){
-                        if(['aborted, exited'].indexOf(agent.NewStatus)<=-1){
+                        if(['aborted', 'exited'].indexOf(agent.NewStatus)<=-1){
                             logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
                             return;
                         }
