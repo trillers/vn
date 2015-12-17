@@ -31,6 +31,10 @@ proto.updateNode = function* (node){
     yield kvs.saveNodeAsync(node);
 };
 
+proto.getAgentById = function* (agentId){
+    return yield kvs.getAgentByIdAsync(agentId);
+};
+
 proto.updateAgent = function* (agent){
     yield kvs.saveNodeAsync(agent);
 };
