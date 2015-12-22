@@ -43,19 +43,19 @@ function* callback() {
                     var agent = yield app.nodeManager.getAgentById(data.AgentId);
                     if(data.Command === 'start'){
                         if(['aborted', 'exited'].indexOf(agent.NewStatus)<=-1){
-                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            logger.warn('[system]: Failed to start agent that current status is '+agent.NewStatus);
                             return;
                         }
                     }
                     else if(data.Command === 'stop'){
                         if(['starting', 'logging', 'mislogged', 'logged', 'exceptional'].indexOf(agent.NewStatus)<=-1){
-                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            logger.warn('[system]: Failed to stop agent that current status is '+agent.NewStatus);
                             return;
                         }
                     }
                     else if(data.Command === 'restart'){
                         if(['starting', 'logging', 'mislogged', 'logged', 'exceptional'].indexOf(agent.NewStatus)<=-1){
-                            logger.warn('[system]: Failed to ' +data.Command+ ' agent that current status is '+agent.NewStatus);
+                            logger.warn('[system]: Failed to restart agent that current status is '+agent.NewStatus);
                             return;
                         }
                     }
