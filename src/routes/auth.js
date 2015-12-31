@@ -1,4 +1,4 @@
-var settings = require('athena-settings');
+var settings = require('base-settings');
 var Authenticator = require('../framework/Authenticator');
 var WeixinOAuthClient = require('../framework/WeixinOAuthClient');
 var UserKV = require('../modules/user/kvs/User');

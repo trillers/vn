@@ -1,5 +1,5 @@
-var settings = require('athena-settings');
-var resources = require('athena-settings').resources;
+var settings = require('base-settings');
+var resources = require('base-settings').resources;
 //var UserMeta = require('../kvs/UserMeta');
 //var typeRegistry = require('../models/TypeRegistry');
 //var workflowRegistry = require('../app/workflow');

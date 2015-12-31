@@ -1,4 +1,4 @@
-var settings = require('athena-settings');
+var settings = require('base-settings');
 var wsServer = require('socket.io').Server;
 var events = require('events');
 

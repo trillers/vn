@@ -1,4 +1,4 @@
-var settings = require('athena-settings').mongo;
+var settings = require('base-settings').mongo;
 var mongoose = require('mongoose');
 var logger = require('./logging').logger;
 
