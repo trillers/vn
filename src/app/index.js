@@ -60,6 +60,7 @@ function* callback() {
                         }
                     }
                     logger.info('[system]: Forward request to node manager, prepare to '+data.Command+' agent [agentId]='+data.AgentId);
+                    console.log(agent);
                     broker.command(data, agent.NodeId);
                 }else{
                     //agent not exist

@@ -76,7 +76,7 @@ proto.saveOrUpdateAgent = function* (agent){
             }
         }else{
             yield kvs.pushAgentToSetAsync(json);
-            util.mixin(json, new Node(json.AgentId));
+            util.mixin(json, new Node(json.NodeId));
         }
         yield kvs.saveAgentAsync(json);
     }catch(e){
