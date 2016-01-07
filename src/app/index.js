@@ -59,7 +59,7 @@ function* callback() {
                             return;
                         }
                     }
-                    logger.info('[system]: Forward request to am, prepare to '+data.Command+' agent [agentId]='+data.AgentId);
+                    logger.info('[system]: Forward request to node manager, prepare to '+data.Command+' agent [agentId]='+data.AgentId);
                     broker.command(data, agent.NodeId);
                 }else{
                     //agent not exist
@@ -137,11 +137,17 @@ function* callback() {
      */
     broker.onAgentStatusChange(function (err, data) {
         co(function* () {
-            console.log("[system]: agent status changed [agentId]: data.AgentId" + data.AgentId);
-            console.log(data);
-            yield app.nodeManager.saveOrUpdateAgent(data);
-            if(['aborted, exited'].indexOf(data.NewStatus) >= 0){
-                yield app.nodeManager.removeAgentFromSet(data.AgentId);
+            try{
+                console.log("[system]: agent status changed [agentId]: data.AgentId" + data.AgentId);
+                console.log(data);
+                yield app.nodeManager.saveOrUpdateAgent(data);
+                console.log(['aborted', 'exited'].indexOf(data.NewStatus) >= 0);
+                if(['aborted', 'exited'].indexOf(data.NewStatus) >= 0){
+                    yield app.nodeManager.removeAgent(data.AgentId);
+                }
+            }
+            catch(e){
+                console.error(e);
             }
         })
     });

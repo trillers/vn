@@ -51,9 +51,9 @@ var kvs ={
             cbUtil.handleSingleValue(callback, err, result);
         })
     },
-    remAgentFromSet: function(agent, callback){
+    remAgentFromSet: function(agentId, callback){
         var key = agentSetKey();
-        redis.srem(key, agent.AgentId, function(err, result){
+        redis.srem(key, agentId, function(err, result){
             cbUtil.logCallback(
                 err,
                 'Fail to rem agent' + ': ' + err,
