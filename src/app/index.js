@@ -42,7 +42,7 @@ function* callback() {
                 if(agentIds.indexOf(data.AgentId) >=0){
                     var agent = yield app.nodeManager.getAgentById(data.AgentId);
                     if(data.Command === 'start'){
-                        if(['aborted', 'exited'].indexOf(agent.NewStatus)<=-1){
+                        if(['aborted', 'exited', 'mislogged'].indexOf(agent.NewStatus)<=-1){
                             logger.warn('[system]: Failed to start agent that current status is '+agent.NewStatus);
                             return;
                         }
@@ -143,7 +143,7 @@ function* callback() {
                 console.log(data);
                 yield app.nodeManager.saveOrUpdateAgent(data);
                 console.log(['aborted', 'exited'].indexOf(data.NewStatus) >= 0);
-                if(['aborted', 'exited'].indexOf(data.NewStatus) >= 0){
+                if(['aborted', 'exited', 'mislogged'].indexOf(data.NewStatus) >= 0){
                     yield app.nodeManager.removeAgent(data.AgentId);
                 }
             }
